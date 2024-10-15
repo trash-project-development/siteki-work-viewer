@@ -1,0 +1,50 @@
+{
+  "name": "siteki-work-viewer",
+  "version": "alpha@v1",
+  "scripts": {
+    "dev": "next dev",
+    "dev-https": "next dev --experimental-https",
+    "database": "prisma migrate deploy && prisma generate",
+    "build": "next build",
+    "start": "next start -p 32222",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^1.2.0",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^6.1.0",
+    "@mui/material": "^6.1.0",
+    "@mui/material-nextjs": "^6.1.0",
+    "@prisma/client": "^5.20.0",
+    "@tanstack/react-query": "^5.51.14",
+    "@wavesurfer/react": "^1.0.7",
+    "bcrypt": "^5.1.1",
+    "byte-size": "^8.1.1",
+    "file-type": "^19.3.0",
+    "image-size": "^1.1.1",
+    "jotai": "^2.6.4",
+    "nanoid": "^5.0.7",
+    "next": "^14.2.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.50.1",
+    "react-icons": "^5.0.1",
+    "sharp": "^0.33.4",
+    "wavesurfer.js": "^7.8.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/byte-size": "^8.1.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "prisma": "^5.20.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(cuid())
+  name          String?
+  image         String?
+  createdAt     DateTime      @default(now())
+  likes         Like[]
+  works         WorkAuthor[]
+  comments      WorkComment[]
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  works     WorkTag[]
+}
+
+model Like {
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  work      Work     @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId    String
+  createdAt DateTime @default(now())
+
+  @@id([userId, workId])
+}
+
+model Work {
+  id          String        @id @unique @default(uuid())
+  title       String
+  description String?
+  type        String
+  like        Like[]
+  authors     WorkAuthor[]
+  tags        WorkTag[]
+  comments    WorkComment[]
+  createdAt   DateTime      @default(now())
+
+  Lyrics   LyricsWork?
+  Files    FileWork?
+  Novels   NovelWork?
+  TextWork TextWork?
+}
+
+model LyricsWork {
+  work             Work    @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId           String  @unique
+  lyrics           String
+}
+
+model FileWork {
+  work   Work   @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId String @unique
+  File   File[]
+  status String @default("ok")
+}
+
+model File {
+  id          String   @id @default(uuid())
+  workId      String
+  work        FileWork @relation(fields: [workId], references: [workId], onDelete: Cascade)
+  fileName    String
+  displayName String
+  mimeType    String
+  index       Int
+}
+
+model NovelWork {
+  work          Work    @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId        String  @unique
+  isTopToBottom Boolean
+  novelText     String
+}
+
+model TextWork {
+  work          Work    @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId        String  @unique
+  isTopToBottom Boolean
+  text          String
+}
+
+model WorkAuthor {
+  workId String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  work   Work   @relation(fields: [workId], references: [id], onDelete: Cascade)
+
+  @@id([workId, userId])
+}
+
+model WorkTag {
+  work   Work   @relation(fields: [workId], references: [id], onDelete: Cascade)
+  workId String
+  tag    Tag    @relation(fields: [tagId], references: [id])
+  tagId  String
+
+  @@id([workId, tagId])
+}
+
+model WorkComment {
+  id        String   @id @unique @default(uuid())
+  userId    String
+  workId    String
+  text      String
+  user      User     @relation(fields: [userId], references: [id])
+  work      Work     @relation(fields: [workId], references: [id])
+  createdAt DateTime @default(now())
+}

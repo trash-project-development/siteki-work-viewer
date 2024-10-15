@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="kagikakko" xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .b {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path class="b" d="M27.39795,157.40137V24.00342h67.59912v17h-50.59912v116.39795h-17Z"/>
+  <path class="b" d="M1172.60205,472.59863v133.39795s-67.59912,0-67.59912,0v-17s50.59912,0,50.59912,0v-116.39795s17,0,17,0Z"/>
+</svg>

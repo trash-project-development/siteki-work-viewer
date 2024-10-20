@@ -14,9 +14,5 @@ export default function WorkViewer({
   if (workType === WorkType.FILES) return <FileWorkViewer workId={workId} />;
   if (workType === WorkType.TEXT) return <TextWorkViewer workId={workId} />;
   if (workType === WorkType.LYRICS) return <LyricsWorkViewer workId={workId} />;
-  return (
-    <Typography>
-      あっ、来てない、対応してない……　ｵｫﾝ⤵️……（対応していない作品タイプです）
-    </Typography>
-  );
+  return <Typography>（対応していない作品タイプです）</Typography>;
 }
